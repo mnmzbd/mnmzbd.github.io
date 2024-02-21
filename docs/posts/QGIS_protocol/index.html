@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Madison Mitchell &amp; Grace Sidberry">
+<meta name="dcterms.date" content="2023-12-15">
+
+<title>Madi Mitchell - QGIS Grid Creation Protocol</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Madi Mitchell</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Projects.html">
+ <span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">QGIS Grid Creation Protocol</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">analysis</div>
+                <div class="quarto-category">SOP</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Madison Mitchell &amp; Grace Sidberry </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 15, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p><strong>Gridding the Reference Flight</strong></p>
+<ol type="1">
+<li><p>Open QGIS and open a “New Project”</p></li>
+<li><p>Go to the “Layer” tab at the top, then “Add Raster Layer” - where it says browse, go to the Pix4D folder for the date and field being gridded and find the orthomosaic tiff file from your date of interest</p></li>
+<li><p>Go to Project -&gt; Properties. Select CRS from the side tab. Change the Coordinate Reference System to “WGS 84/ UTM zone 15N” Authority ID: “EPSG:32615”</p></li>
+<li><p>Save project as Date_camera_field_QGIS</p></li>
+<li><p>When the orthomosaic shows up on the screen, go to the “Rotation” bar in the bottom right corner and change the rotation angle until the orthomosaic is straight (As straight as it can be, doesn’t have to be perfect)</p></li>
+<li><p>&nbsp;To create the origin point where the grid will start from:</p>
+<ol type="1">
+<li><p>Navigate to the “Layer” tab at the top of toolbar then “Create Layer” then “New Shapefile Layer”</p></li>
+<li><p>Save with the name “origin”&nbsp;</p></li>
+<li><p>Change the project CRS to EPSG:32615-WGS 84/UTM zone 15N Click ok</p></li>
+</ol></li>
+<li><p>Click the “Toggle Editing” and then “Add Point Feature” (dot and three stars icon at top of page) - make the point in the lower left corner above the GCP in between the plants in the first experimental plot</p></li>
+<li><p>&nbsp;When the labeling window comes up, name the point “1”</p>
+<p><img src="Screen Shot 2023-12-15 at 10.06.30 AM.png" class="img-fluid" style="width:7in"></p>
+<ol type="1">
+<li><p>&nbsp;To get to the processing toolbox:</p></li>
+<li><p>Go to “Plugins” then “Manage and Install Plugins”&nbsp;</p></li>
+<li><p>Re-check the box for “Processing”</p></li>
+</ol></li>
+<li><p>Close the tab and click on the “Setting” icon that looks like a gear and the toolbox will appear</p>
+<p><img src="Screen Shot 2023-12-15 at 10.06.40 AM.png" class="img-fluid" style="width:7in"></p></li>
+<li><p>Click on the “R” option and in the drop down menu click “Draw Plots from points” -&nbsp; a window should appear with all of the options for inputting the range and row measurements. To create the grid:</p></li>
+</ol>
+<!-- -->
+<ol type="1">
+<li><p>Based on information from the field map given, enter the number of ranges in the box for “Number of ranges per block” and enter the number of rows in the box for “Number of rows per block”</p></li>
+<li><p>In the angle of rotation, enter the opposite (+/-) number of the rotation the orthomosaic is set at, which can be seen in the bottom right corner of the screen</p></li>
+<li><p>Make the measurement unit for plot size “feet” and the ID format “serpentine”</p>
+<p><img src="Screen Shot 2023-12-15 at 10.06.55 AM.png" class="img-fluid" style="width:7in"></p></li>
+<li><p>Start the numbering plots should be “bottom left”</p></li>
+<li><p>The “Full plot height” and “Data plot height” should be the length of each plot in feet and the “Full plot width” and “Data plot width” should be the width of each plot in feet</p></li>
+<li><p>Set the Field containing ID to “123 id” (a common error with the script happens when this setting isn’t correct)</p></li>
+</ol>
+<p>11. Go to the log tab at the top of the window to see if the script runs successfully</p>
+<p>12. When the script is finished running, the grid will generate on top of the orthomosaic with the boxes colored in. To make the boxes transparent:</p>
+<ol type="1">
+<li><p>Click on the layer in the “Layers” Menu on the left side of the screen</p></li>
+<li><p>In the dropdown menu, go to “Properties” then “Symbology” on the left side of the window</p></li>
+<li><p>Change the fill to the red outline</p></li>
+<li><p>Click on the “Simple Line” below “Fill” and change the line width to “Hairline”&nbsp;</p></li>
+<li><p>Click “Ok”</p></li>
+</ol>
+<p>13. Go through each row of the grid checking that each box contains one plot - the plots on the end of each row and range don’t need a box because they’re border - so when the grid is used for future flights the plots will, for the most part, already be lined up (This step will probably take the longest)</p>
+<p>14. Turn off toggle editing on the Trial grid layer</p>
+<p>15. Export the reference grid for future use (***THIS MUST HAPPEN EVEN IF THE GRID ISN’T FINISHED…YOU WILL DELETE EVERYTHING IF NOT DONE!!!!!!!!)</p>
+<ol type="1">
+<li><p>Select the grid (“All trials”) from the layers toolbar on the left</p></li>
+<li><p>Right click on the grid and go to Export -&gt; Save Feature As…</p></li>
+<li><p>Select the “GeoPackage” as the format</p></li>
+<li><p>Select the “...” button and navigate to the main directory for this field (i.e., Gen7)</p></li>
+<li><p>Name the file as “Reference_grid_[Field Name]_[Year]”. Click Save. Click Ok.</p></li>
+</ol>
+<hr>
+<p><strong>HOW TO OPEN THE FILES AND START ALTERING THE GRID AGAIN AFTER INITIAL CLOSING AND SAVING</strong></p>
+<ol type="1">
+<li><p>Open QGIS</p></li>
+<li><p>Project -&gt; Open… -&gt; select the project from the date of interest .qgz (this will only open the orthomosaic)</p></li>
+<li><p>Layer -&gt; Add Layer -&gt; Add Vector Layer</p>
+<ol type="1">
+<li>Choose the Reference_grid_“field”_“date”</li>
+</ol></li>
+<li><p>Enable Toggle editing on the Reference grid layer</p>
+<ol type="1">
+<li>Right click -&gt; Properties -&gt; symbology change the grid to red outline and change the line weight to hairline</li>
+</ol></li>
+<li><p>Resume fixing the grid</p></li>
+</ol>
+<p><br>
+</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
