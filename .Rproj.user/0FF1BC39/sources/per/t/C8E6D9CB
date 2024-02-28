@@ -1,0 +1,26 @@
+{
+    "id": "C8E6D9CB",
+    "path": "~/Desktop/uav_flood_analysis/RStudio/02_Data_Cleaning.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "4015998488",
+    "contents": "",
+    "dirty": false,
+    "created": 1708631238189.0,
+    "source_on_save": false,
+    "relative_order": 10,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "68,0",
+        "scrollLine": "52"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1709054354,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1709054354444,
+    "read_only": false,
+    "read_only_alternatives": []
+}
